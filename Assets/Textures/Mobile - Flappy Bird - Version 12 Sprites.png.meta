@@ -248,6 +248,9 @@ TextureImporter:
   - first:
       213: -7079708407035710798
     second: message
+  - first:
+      213: 4959531456098652944
+    second: GetReady
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -2058,7 +2061,7 @@ TextureImporter:
         width: 59
         height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2066,6 +2069,27 @@ TextureImporter:
       bones: []
       spriteID: 2b23a45b6b2dfbd90800000000000000
       internalID: -7079708407035710798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GetReady
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 429
+        width: 96
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 013d225259bc3d440800000000000000
+      internalID: 4959531456098652944
       vertices: []
       indices: 
       edges: []
