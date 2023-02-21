@@ -28,12 +28,12 @@ public class GameManager : MonoBehaviour
 
     private UiHandler uiHandler;
 
-    // [SerializeField]
-    // private Text scoreTextInGame;
-    // [SerializeField]
-    // private Text scoreTextResult;
-    // [SerializeField]
-    // private GameObject gameoverCanvas;
+    [SerializeField]
+    private Text scoreTextInGame;
+    [SerializeField]
+    private Text scoreTextResult;
+    [SerializeField]
+    private GameObject gameoverCanvas;
     private int score;
     private bool gameover;
 
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     {
         if(instance != null && instance != this)
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
         else
         {
@@ -58,16 +58,16 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore()
     {
         score++;
-        // scoreTextInGame.text = score.ToString();
-        // scoreTextResult.text = score.ToString();
-        uiHandler.SetScoreText(score);
+        scoreTextInGame.text = score.ToString();
+        scoreTextResult.text = score.ToString();
+        // uiHandler.SetScoreText(score);
     }
 
     public void GameOver()
     {
         gameover = true;
-        // gameoverCanvas.SetActive(true);
-        uiHandler.ShowResultPanel();
+        gameoverCanvas.SetActive(true);
+        // uiHandler.ShowResultPanel();
     }
 
     public bool IsGameOver()
@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
     public void OnPlayBtnPressed()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         gameover = false;
     }
 }

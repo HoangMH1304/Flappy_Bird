@@ -1046,6 +1046,9 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 546abbb6f990c964d85a784461612e94, type: 3}
   - sound: 4
     audioClip: {fileID: 8300000, guid: 458f89089db2c644f857fd87f4142a3a, type: 3}
+  scoreTextInGame: {fileID: 622555725}
+  scoreTextResult: {fileID: 1928703563}
+  gameoverCanvas: {fileID: 1464951667}
 --- !u!4 &257136118
 Transform:
   m_ObjectHideFlags: 0
