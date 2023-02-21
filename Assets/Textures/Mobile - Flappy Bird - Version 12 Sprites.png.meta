@@ -251,6 +251,9 @@ TextureImporter:
   - first:
       213: 4959531456098652944
     second: GetReady
+  - first:
+      213: -2769340808289363968
+    second: GameOver
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -2082,7 +2085,7 @@ TextureImporter:
         width: 96
         height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2090,6 +2093,27 @@ TextureImporter:
       bones: []
       spriteID: 013d225259bc3d440800000000000000
       internalID: 4959531456098652944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameOver
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 431
+        width: 100
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0085beb15335199d0800000000000000
+      internalID: -2769340808289363968
       vertices: []
       indices: 
       edges: []
