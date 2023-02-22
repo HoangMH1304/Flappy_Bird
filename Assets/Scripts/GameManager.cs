@@ -5,80 +5,54 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            if(instance == null)
-            {
-                instance = new GameManager();
-            }
-            return instance;
-        }
-    }
+    private const string COLUMN = "Column";
     [SerializeField]
-    public SoundAudioClip[] soundAudioClips;
-
-    [Serializable]
-    public class SoundAudioClip{
-        public SoundManager.Sound sound;
-        public AudioClip audioClip;
-    }
-
-    private UiHandler uiHandler;
-
-    [SerializeField]
-    private Text scoreTextInGame;
-    [SerializeField]
-    private Text scoreTextResult;
+    private GameObject player;
     [SerializeField]
     private GameObject gameoverCanvas;
-    private int score;
-    private bool gameover;
+    [SerializeField]
+    private GameObject getReady;
+    [SerializeField]
+    private Score score;
+    private static bool gameOver;
+    private static bool gameHasStarted;
 
-    private void Awake()
-    {
-        if(instance != null && instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
-        }
-        DontDestroyOnLoad(gameObject);
-    }
-
+   
     private void Start() {
-        gameover = false;
-        uiHandler = FindObjectOfType<UiHandler>();
-    }
-
-    public void IncreaseScore()
-    {
-        score++;
-        scoreTextInGame.text = score.ToString();
-        scoreTextResult.text = score.ToString();
-        // uiHandler.SetScoreText(score);
+        gameOver = false;
+        gameHasStarted = false;
     }
 
     public void GameOver()
     {
-        gameover = true;
+        gameOver = true;
         gameoverCanvas.SetActive(true);
-        // uiHandler.ShowResultPanel();
+        score.SetScoreState(false);
+        var animator = player.GetComponent<Animator>();
+        animator.enabled = false;
     }
 
-    public bool IsGameOver()
+    public void StartGame()
     {
-        return gameover;
+        gameHasStarted = true;
+        score.SetScoreState(true);
+        getReady.SetActive(false);
+    }
+
+    public static bool IsGameOver()
+    {
+        return gameOver;
+    }
+
+    public static bool HasGameStarted()
+    {
+        return gameHasStarted;
     }
 
     public void OnPlayBtnPressed()
     {
+        gameOver = false;
+        ObjectPool.Instance.SetObjectPoolState(false, COLUMN);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        // SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-        gameover = false;
     }
 }

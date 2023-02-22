@@ -7,34 +7,30 @@ public class PipeSpawner : MonoBehaviour
     private const float SPAWN_TIME = 1.5f;
     private const float MIN_HEIGHT = -1f;
     private const float MAX_HEIGHT = 3f;
+    private const string COLUMN = "Column";
     [SerializeField]
     private GameObject pipe;
     private float time = 0;
     private Vector3 spawnPosition;
 
-    // private void OnEnable() {
-    //     InvokeRepeating(nameof(Spawn), SPAWN_TIME, SPAWN_TIME);
-    // }
-    // private void OnDisable() {
-    //     CancelInvoke(nameof(Spawn));
-    // }
-
     private void Update() {
-        if(GameManager.Instance.IsGameOver()) return;
-        if(time >= SPAWN_TIME)
+        if(!GameManager.IsGameOver() && GameManager.HasGameStarted())
         {
-            Spawn();
-            time = 0;
+            if(time >= SPAWN_TIME)
+            {
+                Spawn();
+                time = 0;
+            }
+            time += Time.deltaTime;
         }
-        time += Time.deltaTime;
     }
 
     private void Spawn()
     {
-        GameObject go = Instantiate(pipe, transform.position, Quaternion.identity);
+        GameObject go = ObjectPool.Instance.Spawn(COLUMN);
         float random = Random.Range(MIN_HEIGHT, MAX_HEIGHT);
+        go.transform.position = transform.position;
         go.transform.position += Vector3.up * random;
         go.transform.SetParent(transform);
     }
-
 }

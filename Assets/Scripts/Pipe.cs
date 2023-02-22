@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class Pipe : MonoBehaviour
 {
-    private const float existTime = 5f;
+    private const float EXIST_TIME = 5f;
     [SerializeField]
     private float speed;
-    private Rigidbody2D rb;
     private float time = 0;
-    void Start()
+
+    private void OnEnable() 
     {
-        rb = GetComponent<Rigidbody2D>();
+        time = 0;
     }
 
     private void Update() {
-        if(GameManager.Instance.IsGameOver()) return;
+        if(GameManager.IsGameOver()) return;
         transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
-        if(time >= existTime)
+        if(time >= EXIST_TIME)
         {
             time = 0;
-            Destroy(gameObject);    
+            gameObject.SetActive(false);    
         }
         time += Time.deltaTime;
     }

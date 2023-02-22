@@ -6,8 +6,15 @@ public class Player : MonoBehaviour
 {
     private const int MIN_ANGLE = -90;
     private const int MAX_ANGLE = 20;
+    private const string GROUND = "Ground";
+    private const string PIPE = "Pipe";
+    private const string COLUMN = "Column";
     [SerializeField]
     private float force = 4f;
+    [SerializeField]
+    private GameManager gameManager;
+    [SerializeField]
+    private Score score;
     private Rigidbody2D rb;
     private int angle = 0;
 
@@ -18,20 +25,24 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(GameManager.Instance.IsGameOver()) return;
+        if(GameManager.IsGameOver()) return;
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
+            if(!GameManager.HasGameStarted())
+            {
+                gameManager.StartGame();
+            }
             Jump();
         }
 
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
-            {
-                Jump();
-            }
-        }
+        // if (Input.touchCount > 0)
+        // {
+        //     Touch touch = Input.GetTouch(0);
+        //     if (touch.phase == TouchPhase.Began)
+        //     {
+        //         Jump();
+        //     }
+        // }
         RotateBird();
     }
 
@@ -58,24 +69,24 @@ public class Player : MonoBehaviour
     {
         rb.velocity = Vector2.up * force;
         if(rb.gravityScale == 0) rb.gravityScale = 1.5f;
-        SoundManager.PlaySound(SoundManager.Sound.wing);
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.CompareTag("Obstacle"))
+        if(other.gameObject.CompareTag(PIPE))
         {
-            Debug.Log("Hoang");
-            GameManager.Instance.GameOver();
-            SoundManager.PlaySound(SoundManager.Sound.hit);
+            Debug.LogError("Detect Pipe");
+            gameManager.GameOver();
+        }
+        if(other.gameObject.CompareTag(GROUND))
+        {
+            gameManager.GameOver();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Pass"))
+        if(other.CompareTag(COLUMN))
         {
-            GameManager.Instance.IncreaseScore();
-            SoundManager.PlaySound(SoundManager.Sound.point);
+            score.UpdateScore();
         }
     }
-
 }

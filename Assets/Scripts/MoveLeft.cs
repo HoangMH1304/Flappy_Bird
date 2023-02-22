@@ -16,7 +16,7 @@ public class MoveLeft : MonoBehaviour
 
     void Update()
     {
-        if(GameManager.Instance.IsGameOver()) return;
+        if(GameManager.IsGameOver()) return;
         transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
         if(transform.position.x <= -groundWidth)
         {

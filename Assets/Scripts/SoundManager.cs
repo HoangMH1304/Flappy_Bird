@@ -12,22 +12,22 @@ public class SoundManager : MonoBehaviour
         swoosh
     }
 
-    public static void PlaySound(Sound sound)
-    {
-        GameObject gameObject = new GameObject("Sound", typeof(AudioSource));
-        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.PlayOneShot(GetAudioClip(sound));
-    }
+    // public static void PlaySound(Sound sound)
+    // {
+    //     GameObject gameObject = new GameObject("Sound", typeof(AudioSource));
+    //     AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+    //     audioSource.PlayOneShot(GetAudioClip(sound));
+    // }
 
-    private static AudioClip GetAudioClip(Sound sound)
-    {
-        foreach(GameManager.SoundAudioClip soundAudioClip in GameManager.Instance.soundAudioClips)
-        {
-            if(soundAudioClip.sound == sound)
-                return soundAudioClip.audioClip;
-        }
-        Debug.Log("Sound " + sound + " not found");
-        return null;
-    }
+    // private static AudioClip GetAudioClip(Sound sound)
+    // {
+    //     foreach(GameManager.SoundAudioClip soundAudioClip in GameManager.Instance.soundAudioClips)
+    //     {
+    //         if(soundAudioClip.sound == sound)
+    //             return soundAudioClip.audioClip;
+    //     }
+    //     Debug.Log("Sound " + sound + " not found");
+    //     return null;
+    // }
     
 }
