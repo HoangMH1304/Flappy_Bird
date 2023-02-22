@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
 {
     private const string COLUMN = "Column";
     [SerializeField]
-    private GameObject player;
-    [SerializeField]
     private GameObject gameoverCanvas;
     [SerializeField]
     private GameObject getReady;
@@ -28,8 +26,6 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameoverCanvas.SetActive(true);
         score.SetScoreState(false);
-        var animator = player.GetComponent<Animator>();
-        animator.enabled = false;
     }
 
     public void StartGame()

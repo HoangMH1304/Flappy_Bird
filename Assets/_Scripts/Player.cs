@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag(GROUND) || other.gameObject.CompareTag(PIPE))
         {
+            GetComponent<Animator>().enabled = false;
             if(!GameManager.IsGameOver()) 
                 SoundManager.Instance.PlaySound(SoundManager.Sound.hit);
             gameManager.GameOver();
