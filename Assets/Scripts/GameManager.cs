@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayBtnPressed()
     {
+        SoundManager.Instance.PlaySound(SoundManager.Sound.swoosh);
         gameOver = false;
         ObjectPool.Instance.SetObjectPoolState(false, COLUMN);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

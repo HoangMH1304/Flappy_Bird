@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
                 gameManager.StartGame();
             }
             Jump();
+            SoundManager.Instance.PlaySound(SoundManager.Sound.wing);
         }
 
         // if (Input.touchCount > 0)
@@ -72,13 +73,10 @@ public class Player : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.CompareTag(PIPE))
+        if(other.gameObject.CompareTag(GROUND) || other.gameObject.CompareTag(PIPE))
         {
-            Debug.LogError("Detect Pipe");
-            gameManager.GameOver();
-        }
-        if(other.gameObject.CompareTag(GROUND))
-        {
+            if(!GameManager.IsGameOver()) 
+                SoundManager.Instance.PlaySound(SoundManager.Sound.hit);
             gameManager.GameOver();
         }
     }
@@ -87,6 +85,7 @@ public class Player : MonoBehaviour
         if(other.CompareTag(COLUMN))
         {
             score.UpdateScore();
+            SoundManager.Instance.PlaySound(SoundManager.Sound.point);
         }
     }
 }

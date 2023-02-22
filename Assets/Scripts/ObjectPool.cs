@@ -12,18 +12,7 @@ public class Preallocation
 
 public class ObjectPool : MonoBehaviour
 {
-    private static ObjectPool instance;
-    public static ObjectPool Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new ObjectPool();
-            }
-            return instance;
-        }
-    }
+    public static ObjectPool Instance;
     public List<Preallocation> preAllocations;
     [SerializeField]
     private Transform holder;
@@ -32,24 +21,26 @@ public class ObjectPool : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
-
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        InitObjectPoolList();
+    }
+
+    private void InitObjectPoolList()
+    {
         pooledGobjects = new List<GameObject>();   //spawn all needed gameobject
-        
-        int cnt = 0;
+
         foreach (Preallocation item in preAllocations)
         {
             for (int i = 0; i < item.count; ++i)
             {
                 pooledGobjects.Add(CreateGobject(item.gameObject));
-                cnt++;
             }
         }
     }

@@ -17,24 +17,38 @@ public class Score : MonoBehaviour
     [SerializeField]
     private GameObject newRecord;
 
-    private void Start() {
-        score = 0;
-        scoreText.text = score.ToString();
-        scoreInPanel.text = score.ToString();
-        highScore = PlayerPrefs.GetInt("highscore");
-        highScoreInPanel.text = highScore.ToString();
+    private void Start()
+    {
+        InitScore();
+        DisplayScoreUI();
     }
 
+    private void InitScore()
+    {
+        score = 0;
+        highScore = PlayerPrefs.GetInt("highscore");
+    }
+
+    private void DisplayScoreUI()
+    {
+        scoreText.text = score.ToString();
+        scoreInPanel.text = score.ToString();
+        highScoreInPanel.text = highScore.ToString();
+    }
     public void UpdateScore()
     {
         score++;
-        scoreText.text = score.ToString();
-        scoreInPanel.text = score.ToString();
         newRecord.SetActive(false);
-        if(score > highScore)
+        HighScoreSolve();
+        DisplayScoreUI();
+    }
+
+
+    private void HighScoreSolve()
+    {
+        if (score > highScore)
         {
             highScore = score;
-            highScoreInPanel.text = highScore.ToString();
             PlayerPrefs.SetInt("highscore", highScore);
             newRecord.SetActive(true);
         }
