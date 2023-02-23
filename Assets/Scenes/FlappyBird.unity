@@ -374,8 +374,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 257136117}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 358330316}
+        m_TargetAssemblyTypeName: UiHandler, Assembly-CSharp
         m_MethodName: OnPlayBtnPressed
         m_Mode: 1
         m_Arguments:
@@ -681,7 +681,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e65056001925104d84113206c4cb60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 223223489}
   gameoverCanvas: {fileID: 1464951667}
   getReady: {fileID: 1037709251}
   score: {fileID: 358330315}
@@ -712,6 +711,7 @@ GameObject:
   - component: {fileID: 358330312}
   - component: {fileID: 358330311}
   - component: {fileID: 358330315}
+  - component: {fileID: 358330316}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -792,8 +792,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 622555724}
-  - {fileID: 1464951668}
   - {fileID: 1037709254}
+  - {fileID: 1464951668}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -818,6 +818,21 @@ MonoBehaviour:
   scoreInPanel: {fileID: 1928703563}
   highScoreInPanel: {fileID: 1257860154}
   newRecord: {fileID: 1432142193}
+--- !u!114 &358330316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358330310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b570dc20a2e0c0741a82688afca11431, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startGameUI: {fileID: 1037709251}
+  endGameUI: {fileID: 1464951667}
+  score: {fileID: 358330315}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,7 +1476,7 @@ GameObject:
   - component: {fileID: 1037709253}
   - component: {fileID: 1037709252}
   m_Layer: 5
-  m_Name: GetReady
+  m_Name: StartGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1518,7 +1533,7 @@ RectTransform:
   m_Children:
   - {fileID: 90836072}
   m_Father: {fileID: 358330314}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1746,7 +1761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1464951668}
   m_Layer: 5
-  m_Name: GameOver
+  m_Name: EndGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1766,7 +1781,7 @@ RectTransform:
   - {fileID: 523924665}
   - {fileID: 531188830}
   m_Father: {fileID: 358330314}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
