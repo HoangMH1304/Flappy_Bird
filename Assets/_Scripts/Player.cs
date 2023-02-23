@@ -14,10 +14,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private int angle = 0;
 
-    // private void Awake() 
-    // {
-    //     GameManager.Instance.ChangeState(GameState.Standby);
-    // }
     private void Start() 
     {
         GameManager.Instance.ChangeState(GameState.Standby);
