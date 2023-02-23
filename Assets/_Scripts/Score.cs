@@ -5,17 +5,12 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text scoreInPanel;
+    [SerializeField] private Text highScoreInPanel;
+    [SerializeField] private GameObject newRecord;
     private int score;
     private int highScore = 0;
-    [SerializeField]
-    private Text scoreText;
-
-    [SerializeField]
-    private Text scoreInPanel;
-    [SerializeField]
-    private Text highScoreInPanel;
-    [SerializeField]
-    private GameObject newRecord;
 
     private void Start()
     {
@@ -42,7 +37,6 @@ public class Score : MonoBehaviour
         HighScoreSolve();
         DisplayScoreUI();
     }
-
 
     private void HighScoreSolve()
     {

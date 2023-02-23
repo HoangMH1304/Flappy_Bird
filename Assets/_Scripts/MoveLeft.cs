@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class MoveLeft : MonoBehaviour
 {
-    [SerializeField]
-    private float speed;
+    [SerializeField] private float speed;
     private BoxCollider2D box;
     private float groundWidth;
     void Start()
@@ -16,7 +15,7 @@ public class MoveLeft : MonoBehaviour
 
     void Update()
     {
-        if(GameManager.IsGameOver()) return;
+        if(GameManager.Instance.GameOver) return;
         transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
         if(transform.position.x <= -groundWidth)
         {

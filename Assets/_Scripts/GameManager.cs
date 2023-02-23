@@ -1,58 +1,81 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum GameState
+{
+    Standby,
+    StartGame,
+    EndGame
+}
 public class GameManager : MonoBehaviour
 {
-    public enum GameState
+
+    public GameState State {get; private set;}
+
+    private static GameManager instance;
+    public static GameManager Instance {get => instance;}
+
+    private bool gameStart;
+    private bool gameOver;
+    public bool GameStart { get => gameStart; set => gameStart = value; }
+    public bool GameOver { get => gameOver; set => gameOver = value; }
+
+    private UiHandler uiHandler;
+
+
+    private void Awake() {
+        if(instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        // uiHandler = FindObjectOfType<UiHandler>();
+        // Debug.Log($"uiHandler: {uiHandler}");
+    }
+
+    public void ChangeState(GameState newState)
     {
-        Starting,
-        EndGame
+        uiHandler = FindObjectOfType<UiHandler>();
+        State = newState;
+        switch (newState)
+        {
+            case GameState.Standby:
+                HandleStandbyState();
+                Debug.Log((newState));
+                break;
+            case GameState.StartGame:
+                HandleStartGameState();
+                Debug.Log((newState));
+                break;
+            case GameState.EndGame:
+                HandleEndGameState();
+                Debug.Log((newState));
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
+        }
     }
 
-    private const string COLUMN = "Column";
-    [SerializeField]
-    private GameObject gameoverCanvas;
-    [SerializeField]
-    private GameObject getReady;
-    [SerializeField]
-    private Score score;
-    private static bool gameOver;
-    private static bool gameHasStarted;
-
-   
-    private void Start() {
+    public void HandleStandbyState()
+    {
+        gameStart = false;
         gameOver = false;
-        gameHasStarted = false;
     }
 
-    public void GameOver()
+    public void HandleStartGameState()
+    {
+        gameStart = true;
+        uiHandler.HandleStartGameUI();
+    }
+
+    public void HandleEndGameState()
     {
         gameOver = true;
-        gameoverCanvas.SetActive(true);
-        score.SetScoreState(false);
-    }
-
-    public void StartGame()
-    {
-        gameHasStarted = true;
-        score.SetScoreState(true);
-        getReady.SetActive(false);
-    }
-
-    public static bool IsGameOver()
-    {
-        return gameOver;
-    }
-
-    public static bool HasGameStarted()
-    {
-        return gameHasStarted;
-    }
-
-    public void OnPlayBtnPressed()
-    {
-        SoundManager.Instance.PlaySound(SoundManager.Sound.swoosh);
-        ObjectPool.Instance.SetObjectPoolState(false, COLUMN);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        uiHandler.HandleGameOverUI();
     }
 }

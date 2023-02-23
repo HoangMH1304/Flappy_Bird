@@ -12,7 +12,8 @@ public class Preallocation
 
 public class ObjectPool : MonoBehaviour
 {
-    public static ObjectPool Instance;
+    private static ObjectPool instance;
+    public static ObjectPool Instance { get => instance; }
     public List<Preallocation> preAllocations;
     [SerializeField]
     private Transform holder;
@@ -21,12 +22,12 @@ public class ObjectPool : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null)
+        if (instance != null)
         {
             Destroy(gameObject);
             return;
         }
-        Instance = this;
+        instance = this;
         DontDestroyOnLoad(gameObject);
 
         InitObjectPoolList();

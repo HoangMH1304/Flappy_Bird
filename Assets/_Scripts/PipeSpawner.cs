@@ -11,7 +11,7 @@ public class PipeSpawner : MonoBehaviour
     private float time = 0;
 
     private void Update() {
-        if(!GameManager.IsGameOver() && GameManager.HasGameStarted())
+        if(!GameManager.Instance.GameOver && GameManager.Instance.GameStart)
         {
             if(time >= SPAWN_TIME)
             {

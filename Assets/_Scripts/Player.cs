@@ -9,28 +9,30 @@ public class Player : MonoBehaviour
     private const string GROUND = "Ground";
     private const string PIPE = "Pipe";
     private const string COLUMN = "Column";
-    [SerializeField]
-    private float force = 4f;
-    [SerializeField]
-    private GameManager gameManager;
-    [SerializeField]
-    private Score score;
+    [SerializeField] private float force = 4f;
+    [SerializeField] private Score score;
     private Rigidbody2D rb;
     private int angle = 0;
 
-    private void Start() {
+    // private void Awake() 
+    // {
+    //     GameManager.Instance.ChangeState(GameState.Standby);
+    // }
+    private void Start() 
+    {
+        GameManager.Instance.ChangeState(GameState.Standby);
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
     }
 
     private void Update()
     {
-        if(GameManager.IsGameOver()) return;
+        if(GameManager.Instance.GameOver) return;
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
-            if(!GameManager.HasGameStarted())
+            if(!GameManager.Instance.GameStart)
             {
-                gameManager.StartGame();
+                GameManager.Instance.ChangeState(GameState.StartGame);
             }
             Jump();
             SoundManager.Instance.PlaySound(SoundManager.Sound.wing);
@@ -67,9 +69,11 @@ public class Player : MonoBehaviour
         if(other.gameObject.CompareTag(GROUND) || other.gameObject.CompareTag(PIPE))
         {
             GetComponent<Animator>().enabled = false;
-            if(!GameManager.IsGameOver()) 
+            if(!GameManager.Instance.GameOver)
+            {
                 SoundManager.Instance.PlaySound(SoundManager.Sound.hit);
-            gameManager.GameOver();
+                GameManager.Instance.ChangeState(GameState.EndGame);
+            }
         }
     }
 

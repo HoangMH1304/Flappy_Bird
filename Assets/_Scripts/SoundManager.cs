@@ -12,22 +12,23 @@ public class SoundManager : MonoBehaviour
         swoosh
     }
 
-    [SerializeField]
-    private SoundAudioClip[] soundAudioClips;
-    [SerializeField]
-    private AudioSource audioSource;
+    [SerializeField] private SoundAudioClip[] soundAudioClips;
+    [SerializeField] private AudioSource audioSource;
+    private static SoundManager instance;
 
-    public static SoundManager Instance;
+    public static SoundManager Instance { get => instance; }
+
     private void Awake() {
-        if (Instance != null)
+        if(instance != null && instance != this)
         {
             Destroy(gameObject);
-            return;
         }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
-
 
     public void PlaySound(Sound sound)
     {

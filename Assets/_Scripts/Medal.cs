@@ -5,16 +5,11 @@ using UnityEngine.UI;
 
 public class Medal : MonoBehaviour
 {
-    [SerializeField]
-    private Score score;
-    [SerializeField]
-    private Sprite normalMedal;
-    [SerializeField]
-    private Sprite bronzeMedal;
-    [SerializeField]
-    private Sprite silverMedal;
-    [SerializeField]
-    private Sprite goldMedal;
+    [SerializeField] private Score score;
+    [SerializeField] private Sprite normalMedal;
+    [SerializeField] private Sprite bronzeMedal;
+    [SerializeField] private Sprite silverMedal;
+    [SerializeField] private Sprite goldMedal;
     private Image image;
 
     private void Start() {
