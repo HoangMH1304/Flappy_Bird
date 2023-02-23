@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -48,7 +46,6 @@ public class GameManager : MonoBehaviour
     public void OnPlayBtnPressed()
     {
         SoundManager.Instance.PlaySound(SoundManager.Sound.swoosh);
-        gameOver = false;
         ObjectPool.Instance.SetObjectPoolState(false, COLUMN);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
