@@ -8,35 +8,15 @@ public enum GameState
     StartGame,
     EndGame
 }
-public class GameManager : MonoBehaviour
+public class GameManager : MonoSingleton<GameManager>
 {
-
     public GameState State {get; private set;}
-
-    private static GameManager instance;
-    public static GameManager Instance {get => instance;}
-
     private bool gameStart;
     private bool gameOver;
     public bool GameStart { get => gameStart; set => gameStart = value; }
     public bool GameOver { get => gameOver; set => gameOver = value; }
 
     private UiHandler uiHandler;
-
-
-    private void Awake() {
-        if(instance != null && instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        // uiHandler = FindObjectOfType<UiHandler>();
-        // Debug.Log($"uiHandler: {uiHandler}");
-    }
 
     public void ChangeState(GameState newState)
     {

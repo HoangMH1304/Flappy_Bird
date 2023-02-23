@@ -10,26 +10,16 @@ public class Preallocation
     public bool expandable;   //phat sinh them object neu khong du dung
 }
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPool : MonoSingleton<ObjectPool>
 {
-    private static ObjectPool instance;
-    public static ObjectPool Instance { get => instance; }
     public List<Preallocation> preAllocations;
     [SerializeField]
     private Transform holder;
     [SerializeField]
     List<GameObject> pooledGobjects;  //spawn all needed gameobject
 
-    void Awake()
-    {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-
+    protected override void Awake() {
+        base.Awake();
         InitObjectPoolList();
     }
 
