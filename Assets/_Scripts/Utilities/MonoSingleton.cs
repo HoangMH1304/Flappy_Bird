@@ -28,7 +28,10 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
     protected virtual void Awake()
     {
         if (m_Instance == null)
+        {
             m_Instance = this as T;
+            DontDestroyOnLoad(gameObject);
+        }
         else if (m_Instance != this)
         {
             Debug.LogError("Another instance of " + GetType() + " is already exist! Destroying self...");
