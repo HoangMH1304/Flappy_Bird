@@ -3,6 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GameState
+    {
+        Starting,
+        EndGame
+    }
+
     private const string COLUMN = "Column";
     [SerializeField]
     private GameObject gameoverCanvas;
