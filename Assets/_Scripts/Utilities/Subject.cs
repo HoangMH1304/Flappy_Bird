@@ -17,9 +17,16 @@ public abstract class Subject : MonoBehaviour
         _observers.Remove(observer);
     }
     // notify each observer that an event has occurred
-    protected void NotifyObservers() {
-        _observers. ForEach((_observer) => {
-            _observer. OnNotify( ) ;
-        });
+    protected void NotifyObservers(PlayerActions action) {
+        // _observers.ForEach((_observer) => {
+        //     _observer.OnNotify(action) ;
+        // });
+        //Obviuosly, your do something code is trying to modify the collection.
+        // It's generally a bad idea to modify the collection while iterating on it.
+
+        foreach(var _observer in _observers.ToArray())  //create copy of list to modify copy
+        {
+            _observer.OnNotify(action);
+        }
     }
 }

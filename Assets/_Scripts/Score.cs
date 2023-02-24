@@ -3,15 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Score : MonoBehaviour
+public class Score : MonoBehaviour, IObserver
 {
-    [SerializeField] private Text scoreText;
+    [SerializeField] private Subject subject;
+    [SerializeField] private Text scoreInGame;
     [SerializeField] private Text scoreInPanel;
     [SerializeField] private Text highScoreInPanel;
     [SerializeField] private GameObject newRecord;
     private int score;
     private int highScore = 0;
 
+    private void OnEnable() 
+    {
+        subject.AddObserver(this);
+    }
+
+    private void OnDisable() 
+    {
+        subject.RemoveObserver(this);
+    }
     private void Start()
     {
         InitScore();
@@ -26,14 +36,13 @@ public class Score : MonoBehaviour
 
     private void DisplayScoreUI()
     {
-        scoreText.text = score.ToString();
+        scoreInGame.text = score.ToString();
         scoreInPanel.text = score.ToString();
         highScoreInPanel.text = highScore.ToString();
     }
     public void UpdateScore()
     {
         score++;
-        newRecord.SetActive(false);
         HighScoreSolve();
         DisplayScoreUI();
     }
@@ -50,11 +59,28 @@ public class Score : MonoBehaviour
 
     public void SetScoreState(bool state)
     {
-        scoreText.gameObject.SetActive(state);
+        scoreInGame.gameObject.SetActive(state);
     }
 
     public int GetScore()
     {
         return score;
+    }
+
+    public void OnNotify(PlayerActions action)
+    {
+        switch (action)
+        {
+            case (PlayerActions.OnStart):
+                InitScore();
+                return;
+            case (PlayerActions.OnPass):
+                UpdateScore();
+                return;
+            case (PlayerActions.OnDeath):
+                return;
+            default:
+                return;
+        }
     }
 }

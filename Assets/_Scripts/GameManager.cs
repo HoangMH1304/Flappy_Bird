@@ -16,11 +16,9 @@ public class GameManager : MonoSingleton<GameManager>
     public bool GameStart { get => gameStart; set => gameStart = value; }
     public bool GameOver { get => gameOver; set => gameOver = value; }
 
-    private UiHandler uiHandler;
 
     public void ChangeState(GameState newState)
     {
-        uiHandler = FindObjectOfType<UiHandler>();
         State = newState;
         switch (newState)
         {
@@ -50,12 +48,10 @@ public class GameManager : MonoSingleton<GameManager>
     public void HandleStartGameState()
     {
         gameStart = true;
-        uiHandler.HandleStartGameUI();
     }
 
     public void HandleEndGameState()
     {
         gameOver = true;
-        uiHandler.HandleGameOverUI();
     }
 }

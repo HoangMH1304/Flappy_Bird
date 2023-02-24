@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Subject
 {
     private const int MIN_ANGLE = -90;
     private const int MAX_ANGLE = 20;
@@ -10,9 +10,8 @@ public class Player : MonoBehaviour
     private const string PIPE = "Pipe";
     private const string COLUMN = "Column";
     [SerializeField] private float force = 4f;
-    [SerializeField] private Score score;
-    private Rigidbody2D rb;
     private int angle = 0;
+    private Rigidbody2D rb;
 
     private void Start() 
     {
@@ -29,6 +28,7 @@ public class Player : MonoBehaviour
             if(!GameManager.Instance.GameStart)
             {
                 GameManager.Instance.ChangeState(GameState.StartGame);
+                NotifyObservers(PlayerActions.OnStart);
             }
             Jump();
             SoundManager.Instance.PlaySound(SoundManager.Sound.wing);
@@ -64,6 +64,8 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag(GROUND) || other.gameObject.CompareTag(PIPE))
         {
+            NotifyObservers(PlayerActions.OnDeath);
+            //
             GetComponent<Animator>().enabled = false;
             if(!GameManager.Instance.GameOver)
             {
@@ -76,7 +78,8 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag(COLUMN))
         {
-            score.UpdateScore();
+            NotifyObservers(PlayerActions.OnPass);
+            //
             SoundManager.Instance.PlaySound(SoundManager.Sound.point);
         }
     }
