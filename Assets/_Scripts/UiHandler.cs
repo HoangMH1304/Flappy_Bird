@@ -25,7 +25,7 @@ public class UiHandler : MonoBehaviour, IObserver
     {
         score.SetScoreState(true);    
         startGameUI.SetActive(false);
-        Debug.Log("enter game");   
+        Logger.Log("Enter game");  
     }
     public void HandleGameOverUI()
     {

@@ -27,7 +27,7 @@ public class SoundManager : MonoSingleton<SoundManager>
             if(soundAudioClip.sound == sound)
                 return soundAudioClip.audioClip;
         }
-        Debug.Log("Sound " + sound + " not found");
+        Logger.Log("Sound " + sound + " not found");
         return null;
     }
 }

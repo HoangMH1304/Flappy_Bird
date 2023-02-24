@@ -16,7 +16,6 @@ public class GameManager : MonoSingleton<GameManager>
     public bool GameStart { get => gameStart; set => gameStart = value; }
     public bool GameOver { get => gameOver; set => gameOver = value; }
 
-
     public void ChangeState(GameState newState)
     {
         State = newState;
@@ -24,16 +23,16 @@ public class GameManager : MonoSingleton<GameManager>
         {
             case GameState.Standby:
                 HandleStandbyState();
-                Debug.Log((newState));
-                break;
+                Logger.Log(newState.ToString());
+                return;
             case GameState.StartGame:
                 HandleStartGameState();
-                Debug.Log((newState));
-                break;
+                Logger.Log(newState.ToString());
+                return;
             case GameState.EndGame:
                 HandleEndGameState();
-                Debug.Log((newState));
-                break;
+                Logger.Log(newState.ToString());
+                return;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
