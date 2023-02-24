@@ -153,7 +153,7 @@ Transform:
   - {fileID: 1629011919}
   - {fileID: 254858481}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &35648754
 GameObject:
@@ -197,7 +197,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &35648757
 MonoBehaviour:
@@ -374,7 +374,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 358330316}
+      - m_Target: {fileID: 358330315}
         m_TargetAssemblyTypeName: UiHandler, Assembly-CSharp
         m_MethodName: OnPlayBtnPressed
         m_Mode: 1
@@ -488,7 +488,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &223223489
 GameObject:
@@ -593,7 +593,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &223223493
 Rigidbody2D:
@@ -645,8 +645,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 5.5
-  gameManager: {fileID: 257136117}
-  score: {fileID: 358330315}
 --- !u!4 &254858481 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8896452236310667914, guid: 239c546f3863e76499399db976dfc60c, type: 3}
@@ -681,9 +679,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e65056001925104d84113206c4cb60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameoverCanvas: {fileID: 1464951667}
-  getReady: {fileID: 1037709251}
-  score: {fileID: 358330315}
 --- !u!4 &257136118
 Transform:
   m_ObjectHideFlags: 0
@@ -711,7 +706,6 @@ GameObject:
   - component: {fileID: 358330312}
   - component: {fileID: 358330311}
   - component: {fileID: 358330315}
-  - component: {fileID: 358330316}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -795,7 +789,7 @@ RectTransform:
   - {fileID: 1037709254}
   - {fileID: 1464951668}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -811,28 +805,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 358330310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5b46563d4df924688c03072a446510, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 622555725}
-  scoreInPanel: {fileID: 1928703563}
-  highScoreInPanel: {fileID: 1257860154}
-  newRecord: {fileID: 1432142193}
---- !u!114 &358330316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 358330310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b570dc20a2e0c0741a82688afca11431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  subject: {fileID: 223223495}
   startGameUI: {fileID: 1037709251}
   endGameUI: {fileID: 1464951667}
-  score: {fileID: 358330315}
+  score: {fileID: 1943120515}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,7 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b814c755a1c0c994fbf267a83938feb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 358330315}
+  score: {fileID: 1943120515}
   normalMedal: {fileID: 1643155221146841879, guid: cf8e657cc4881204f96a57b42826907b, type: 3}
   bronzeMedal: {fileID: 2560398875629629500, guid: cf8e657cc4881204f96a57b42826907b, type: 3}
   silverMedal: {fileID: 1687489963281649004, guid: cf8e657cc4881204f96a57b42826907b, type: 3}
@@ -1391,7 +1370,7 @@ MonoBehaviour:
   - sound: 2
     audioClip: {fileID: 8300000, guid: bc70b1697488ea94e9ea016efadec72b, type: 3}
   - sound: 3
-    audioClip: {fileID: 8300000, guid: 546abbb6f990c964d85a784461612e94, type: 3}
+    audioClip: {fileID: 8300000, guid: e823bd76b47f34c4fa77c73a1485fd5c, type: 3}
   - sound: 4
     audioClip: {fileID: 8300000, guid: 458f89089db2c644f857fd87f4142a3a, type: 3}
   audioSource: {fileID: 624562560}
@@ -1674,7 +1653,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1432142193
 GameObject:
@@ -1868,7 +1847,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1629011919 stripped
 Transform:
@@ -1903,7 +1882,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1928703561
 GameObject:
@@ -1984,6 +1963,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928703561}
   m_CullTransparentMesh: 1
+--- !u!1 &1943120514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1943120516}
+  - component: {fileID: 1943120515}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1943120515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943120514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b5b46563d4df924688c03072a446510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subject: {fileID: 223223495}
+  scoreInGame: {fileID: 622555725}
+  scoreInPanel: {fileID: 1928703563}
+  highScoreInPanel: {fileID: 1257860154}
+  newRecord: {fileID: 1432142193}
+--- !u!4 &1943120516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943120514}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1973768690
 GameObject:
   m_ObjectHideFlags: 0
